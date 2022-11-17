@@ -1,4 +1,4 @@
-export interface Dashboard {
+export interface AssessmentReport {
   data: {
     Agreeableness: number,
     Drive: number,

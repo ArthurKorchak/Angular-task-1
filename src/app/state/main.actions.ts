@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Dashboard } from 'src/models/dashboard';
-import { UserInfo } from 'src/models/user-info';
-import { UserReport } from 'src/models/user-report';
+import { AssessmentReport } from 'src/app/models/assessment-report';
+import { UserInfo } from 'src/app/models/user-info';
+import { UserReport } from 'src/app/models/user-report';
 
 export namespace MainActions {
   export const setUserInfo = createAction(
@@ -14,8 +14,8 @@ export namespace MainActions {
     props<{ userReports: UserReport[] }>()
   );
 
-  export const setDashboard = createAction(
-    'SET_DASHBOARD',
-    props<{ dashboard: Dashboard }>()
+  export const setAssessmentReport = createAction(
+    'SET_ASSESSMENT_REPORT',
+    props<{ assessmentReport: AssessmentReport }>()
   );
 };
