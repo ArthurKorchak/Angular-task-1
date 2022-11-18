@@ -5,12 +5,14 @@ import { UserReport } from 'src/app/models/user-report';
 import { MainActions } from './main.actions';
 
 export interface AppState {
+  loginError: boolean,
   userInfo: UserInfo ,
   userReports: UserReport[],
   assessmentReport: AssessmentReport,
 };
 
 const initialState: AppState = {
+  loginError: false,
   userInfo: {
     first_name: '',
     last_name: '',
@@ -31,6 +33,11 @@ const initialState: AppState = {
 
 export const mainReducer = createReducer(
   initialState,
+  on(MainActions.setLoginError, (state, { loginError }) => ({
+    ...state,
+    loginError
+  })),
+
   on(MainActions.setUserInfo, (state, { userInfo }) => ({
     ...state,
     userInfo

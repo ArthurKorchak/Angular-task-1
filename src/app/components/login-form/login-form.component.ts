@@ -1,20 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { LoginService } from 'src/app/services/login.service';
+import { MainSelectors } from 'src/app/state/main.selectors';
 
 @Component({
   selector: 'app-login-form',
-  template: `
-    <p>
-      login-form works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  
+  public form: FormGroup = new FormGroup({
+    mail: new FormControl(''),
+    password: new FormControl(''),
+  });
+  public error = false;
+  
+  constructor(private loginService: LoginService, private store$: Store) { }
 
-  constructor() { }
+  submit(form: FormGroupDirective) {
+    this.loginService.getUserInfo(form.value.mail, form.value.password)
+  };
 
   ngOnInit(): void {
-  }
-
-}
+    this.store$.select(MainSelectors.loginError).subscribe(resp => {
+      this.error = resp;
+    });
+  };
+};

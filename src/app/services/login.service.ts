@@ -13,10 +13,11 @@ export class LoginService {
   constructor(private http: HttpClient, private store$: Store) { }
 
   getUserInfo(email: string, password: string): void {
-
+    this.store$.dispatch(MainActions.setLoginError({ loginError: false }));
     this.http.post<UserInfo>(`${API_BASE_URL}/api/login`, { email, password })
-      .subscribe(res => {
-        this.store$.dispatch(MainActions.setUserInfo({ userInfo: res }));
+      .subscribe({
+        next: (data) => this.store$.dispatch(MainActions.setUserInfo({ userInfo: data })),
+        error: () => this.store$.dispatch(MainActions.setLoginError({ loginError: true })),
       });
   };
 };
