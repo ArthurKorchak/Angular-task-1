@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Store } from '@ngrx/store';
-import { MainActions } from '../state/main.actions';
+import { MainActions } from 'src/app/state/main.actions';
 import { API_BASE_URL } from 'src/app/constants/api-params';
 import { MainSelectors } from 'src/app/state/main.selectors';
 import { UserReport } from 'src/app/models/user-report';
@@ -18,7 +18,7 @@ export class UserDataService {
     this.store$.select(MainSelectors.userInfo).subscribe(resp => {
       this.token = resp.token;
     });
-  }
+  };
 
   getUserReports(): void {
     const headers = new HttpHeaders({ 'X-Token': this.token });
@@ -36,5 +36,5 @@ export class UserDataService {
       .subscribe(res => {
         this.store$.dispatch(MainActions.setAssessmentReport({ assessmentReport: res }));
       });
-  }
+  };
 };

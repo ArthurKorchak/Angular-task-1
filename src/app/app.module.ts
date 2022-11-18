@@ -8,10 +8,16 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AdminBarComponent } from './components/admin-bar/admin-bar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminBarComponent,
+    DashboardComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

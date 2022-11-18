@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Store } from '@ngrx/store';
 import { MainActions } from '../state/main.actions';
 import { API_BASE_URL } from 'src/app/constants/api-params';
