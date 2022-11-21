@@ -6,10 +6,23 @@ import { MainSelectors } from './state/main.selectors';
   selector: 'app-root',
   template: `
     <app-login-form *ngIf="!userRole"></app-login-form>
-    <app-dashboard *ngIf="userRole"></app-dashboard>
-    <app-admin-bar *ngIf="isUserAdmin"></app-admin-bar>
+    <div class="page-content">
+      <app-dashboard *ngIf="userRole"></app-dashboard>
+      <app-admin-bar *ngIf="isUserAdmin"></app-admin-bar>
+    </div>
   `,
-  styles: []
+  styles: [`
+    :host {
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-content{
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+    }
+  `]
 })
 export class AppComponent implements OnInit {
 

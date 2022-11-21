@@ -7,7 +7,7 @@ import { MainSelectors } from 'src/app/state/main.selectors';
 @Component({
   selector: 'app-dashboard-modal',
   templateUrl: './dashboard-modal.component.html',
-  styles: []
+  styleUrls: []
 })
 export class DashboardModalComponent {
 

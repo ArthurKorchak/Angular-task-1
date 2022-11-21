@@ -1,18 +1,22 @@
 <mat-card>
+  <mat-card-title>Admin section</mat-card-title>
   <mat-card-content>
     <ul class="container">
-      <!-- <li *ngFor="let report of userReports" id={{report.id}} (click)="modalHandler($event)">
+      <li *ngFor="let user of users" id={{user.email}}>
         <mat-card>
           <mat-card-content>
             <div class="text-data">
-              <p class="title">{{report.name}}</p>
-              <p>Users resolved: {{report.users_resolved}}</p>
-              <p>Status: {{report.active ? 'Active' : 'Outdated'}}</p>
+              <p>First Name: {{user.first_name}}</p>
+              <p>Last Name: {{user.last_name}}</p>
+              <p>Email: {{user.email}}</p>
+              <p>{{ user.groups.length ? "User groups:" : null}}</p>
+              <ul>
+                <li *ngFor="let group of user.groups">{{group}}</li>
+              </ul>
             </div>
-            <img class="img-data" src={{report.image_url}} alt="report.name">
           </mat-card-content>
         </mat-card>
-      </li> -->
+      </li>
     </ul>
   </mat-card-content>
 </mat-card>

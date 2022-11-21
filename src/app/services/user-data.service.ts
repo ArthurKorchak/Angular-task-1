@@ -51,10 +51,9 @@ export class UserDataService {
   getUsers(): void {
     const headers = new HttpHeaders({ 'X-Token': this.token });
 
-    this.http.get<User>(`${API_BASE_URL}/api/users`, { headers })
+    this.http.get<User[]>(`${API_BASE_URL}/api/users`, { headers })
       .subscribe(res => {
-        // this.store$.dispatch(MainActions.setUsers({ users: res }));
+        this.store$.dispatch(MainActions.setUsers({ users: res }));
       });
-
   };
 };
