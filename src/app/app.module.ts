@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { mainReducer } from './state/main.reducer';
 import { ModalComponent } from './components/modal/modal.component';
 import { DashboardModalComponent } from './components/dashboard-modal/dashboard-modal.component';
+import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DashboardModalComponent } from './components/dashboard-modal/dashboard-
     DashboardComponent,
     LoginFormComponent,
     ModalComponent,
-    DashboardModalComponent
+    DashboardModalComponent,
+    AdminNavigationComponent
   ],
   imports: [
     BrowserModule,

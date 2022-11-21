@@ -7,6 +7,7 @@ import { MainActions } from './main.actions';
 
 export interface AppState {
   loginError: boolean,
+  currentView: string,
   userInfo: UserInfo | undefined,
   userReports: UserReport[] | undefined,
   assessmentReport: AssessmentReport | undefined,
@@ -15,6 +16,7 @@ export interface AppState {
 
 const initialState: AppState = {
   loginError: false,
+  currentView: 'user',
   userInfo: undefined,
   userReports: undefined,
   assessmentReport: undefined,
@@ -26,6 +28,11 @@ export const mainReducer = createReducer(
   on(MainActions.setLoginError, (state, { loginError }) => ({
     ...state,
     loginError
+  })),
+
+  on(MainActions.setView, (state, { currentView }) => ({
+    ...state,
+    currentView
   })),
 
   on(MainActions.setUserInfo, (state, { userInfo }) => ({

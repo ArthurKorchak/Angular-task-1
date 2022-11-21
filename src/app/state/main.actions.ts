@@ -10,6 +10,11 @@ export namespace MainActions {
     props<{ loginError: boolean }>()
   );
 
+  export const setView = createAction(
+    'SET_VIEW',
+    props<{ currentView: string }>()
+  );
+
   export const setUserInfo = createAction(
     'SET_USER_INFO',
     props<{ userInfo: UserInfo }>()
