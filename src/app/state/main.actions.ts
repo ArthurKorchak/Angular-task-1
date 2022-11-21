@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { AssessmentReport } from 'src/app/models/assessment-report';
 import { UserInfo } from 'src/app/models/user-info';
 import { UserReport } from 'src/app/models/user-report';
+import { User } from '../models/user';
 
 export namespace MainActions {
   export const setLoginError = createAction(
@@ -21,6 +22,11 @@ export namespace MainActions {
 
   export const setAssessmentReport = createAction(
     'SET_ASSESSMENT_REPORT',
-    props<{ assessmentReport: AssessmentReport }>()
+    props<{ assessmentReport: AssessmentReport | undefined}>()
+  );
+
+  export const setUsers = createAction(
+    'SET_USERS',
+    props<{ users: User[] }>()
   );
 };

@@ -3,37 +3,29 @@ import { Store } from '@ngrx/store';
 import { UserReport } from 'src/app/models/user-report';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { MainSelectors } from 'src/app/state/main.selectors';
+import { DashboardModalComponent } from '../dashboard-modal/dashboard-modal.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-dashboard',
-  template: `
-    <ul class="container">
-      <li *ngFor="let report of userReports">
-        <mat-card>
-          <mat-card-content>
-            <div class="text-data">
-              <p class="title">{{report.name}}</p>
-              <p>Users resolved: {{report.users_resolved}}</p>
-              <p>Status: {{report.active ? 'Active' : 'Outdated'}}</p>
-            </div>
-            <img class="img-data" src={{report.image_url}} alt="report.name">
-          </mat-card-content>
-        </mat-card>
-      </li>
-    </ul>
-    <div class="modal">
-
-    </div>
-  `,
+  templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
-  public selectedUserReport: UserReport | null = null;
-  public userReports: UserReport[] = [];
-  public isModalShow = false;
+  public userReports: UserReport[] | undefined = undefined;
 
-  constructor(private userDataService: UserDataService, private store$: Store) { }
+  constructor(
+    private userDataService: UserDataService,
+    private modal: ModalComponent,
+    private store$: Store
+  ) { };
+
+  modalHandler(event: any): void {
+    const targetID = event.currentTarget.id;
+    this.userDataService.getAssessmentReport(targetID);
+    this.modal.openDialog(DashboardModalComponent);
+  };
 
   ngOnInit(): void {
     this.userDataService.getUserReports();
@@ -41,5 +33,4 @@ export class DashboardComponent implements OnInit {
       this.userReports = resp;
     });
   };
-
 };

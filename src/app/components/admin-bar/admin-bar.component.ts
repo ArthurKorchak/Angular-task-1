@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin-bar',
-  template: `
-    <p>
-      admin-bar works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './admin-bar.component.html',
+  styles: [`
+
+  `]
 })
 export class AdminBarComponent implements OnInit {
 

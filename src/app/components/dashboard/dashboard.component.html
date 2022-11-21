@@ -1,0 +1,14 @@
+<ul class="container">
+  <li *ngFor="let report of userReports" id={{report.id}} (click)="modalHandler($event)">
+    <mat-card>
+      <mat-card-content>
+        <div class="text-data">
+          <p class="title">{{report.name}}</p>
+          <p>Users resolved: {{report.users_resolved}}</p>
+          <p>Status: {{report.active ? 'Active' : 'Outdated'}}</p>
+        </div>
+        <img class="img-data" src={{report.image_url}} alt="report.name">
+      </mat-card-content>
+    </mat-card>
+  </li>
+</ul>

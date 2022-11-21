@@ -1,0 +1,12 @@
+<div *ngIf="assessmentReport">
+  <h1 mat-dialog-title>User Assessment Report</h1>
+  <div mat-dialog-content>
+    <p>Agreeableness: {{assessmentReport.data.Agreeableness}}</p>
+    <p>Drive: {{assessmentReport.data.Drive}}</p>
+    <p>Luck: {{assessmentReport.data.Luck}}</p>
+    <p>Openess: {{assessmentReport.data.Openess}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</div>

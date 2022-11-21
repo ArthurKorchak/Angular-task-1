@@ -16,14 +16,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { mainReducer } from './state/main.reducer';
+import { ModalComponent } from './components/modal/modal.component';
+import { DashboardModalComponent } from './components/dashboard-modal/dashboard-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminBarComponent,
     DashboardComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ModalComponent,
+    DashboardModalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +41,12 @@ import { mainReducer } from './state/main.reducer';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot({ main: mainReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [],
+  providers: [ModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

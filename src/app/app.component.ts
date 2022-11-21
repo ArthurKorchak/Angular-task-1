@@ -20,10 +20,8 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this.store$.select(MainSelectors.userInfo).subscribe(resp => {
-      this.userRole = resp.role;
-      if (resp.role === "Admin") {
-        this.isUserAdmin = true;
-      };
+      resp?.role ? this.userRole = resp.role : null;
+      resp?.role === "Admin" ? this.isUserAdmin = true : null;
     });
   };
 };
