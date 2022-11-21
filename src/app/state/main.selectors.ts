@@ -10,5 +10,5 @@ export namespace MainSelectors {
 
   export const userReports = createSelector(allState, state => state.userReports);
 
-  export const dashboard = createSelector(allState, state => state.assessmentReport);
+  export const assessmentReport = createSelector(allState, state => state.assessmentReport);
 }
