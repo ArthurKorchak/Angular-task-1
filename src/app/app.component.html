@@ -1,6 +1,2 @@
-<app-login-form *ngIf="!userRole"></app-login-form>
 <app-admin-navigation *ngIf="isAdmin"></app-admin-navigation>
-<div class="page-content" *ngIf="userRole">
-  <app-dashboard *ngIf="!isAdminBarShowing"></app-dashboard>
-  <app-admin-bar *ngIf="isAdminBarShowing"></app-admin-bar>
-</div>
+<router-outlet></router-outlet>
