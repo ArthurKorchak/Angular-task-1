@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainSelectors } from '../state/main.selectors';
 import { UserInfo } from '../models/user-info';
@@ -12,7 +12,7 @@ export class DashboardGuard implements CanActivate {
 
   private userInfo: UserInfo | undefined;
 
-  constructor(private store$: Store) {
+  constructor(private router: Router, private store$: Store) {
     this.store$.select(MainSelectors.userInfo).subscribe(resp => {
       this.userInfo = resp;
     });
@@ -22,6 +22,11 @@ export class DashboardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    return !!this.userInfo;
+    if (!this.userInfo) {
+      this.router.navigate(['']);
+      return false;
+    };
+    
+    return true;
   };
 };

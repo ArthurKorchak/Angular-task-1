@@ -1,9 +1,14 @@
 <mat-card>
   <mat-card-content>
+    <button (click)="download()" class="download-btn" mat-raised-button color="primary" [disabled]="!isDownloadPossible">Download changed users</button>
     <ul class="container">
-      <li *ngFor="let user of users; let i = index" [id]="i">
+      <li *ngFor="let user of users; let i = index">
         <mat-card class="card">
           <mat-card-content>
+            <div class="checkbox">
+              <input type="checkbox" [id]="user.email" (change)="checkboxHandler($event)">
+              <p class="checkbox-title"> add to download list</p>
+            </div>
             <div class="text-data">
               <p>First Name: {{user.first_name}}</p>
               <p>Last Name: {{user.last_name}}</p>

@@ -6,6 +6,10 @@ p {
   margin: 0;
 }
 
+input {
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -19,11 +23,29 @@ p {
 
 .card {
   width: 248px;
-  min-height: 130px;
+  min-height: 158px;
 }
 
 .text-data {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-title {
+  font-weight: 600;
+  color: rgb(163, 163, 163);
+}
+
+.download-btn {
+  position: absolute;
+  top: 0px;
+  right: -220px;
 }
