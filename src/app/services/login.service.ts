@@ -10,7 +10,7 @@ import { UserInfo } from 'src/app/models/user-info';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient, private store$: Store) { }
+  constructor(private http: HttpClient, private store$: Store) { };
 
   getUserInfo(email: string, password: string): void {
     this.store$.dispatch(MainActions.setLoginError({ loginError: false }));

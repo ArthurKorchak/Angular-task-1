@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { UserReport } from 'src/app/models/user-report';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { MainSelectors } from 'src/app/state/main.selectors';
@@ -11,9 +12,10 @@ import { ModalComponent } from '../modal/modal.component';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   public userReports: UserReport[] | undefined = undefined;
+  private subscription = Subscription.EMPTY;
 
   constructor(
     private userDataService: UserDataService,
@@ -22,15 +24,21 @@ export class DashboardComponent implements OnInit {
   ) { };
 
   modalHandler(event: any): void {
-    const targetID = event.currentTarget.id;
-    this.userDataService.getAssessmentReport(targetID);
-    this.modal.openDialog(DashboardModalComponent);
+    const eventID = event.currentTarget.id;
+    this.modal.openDialog(DashboardModalComponent, {
+      targetID: eventID,
+      report: this.userReports?.find(item => item.id === +eventID)
+    });
   };
 
   ngOnInit(): void {
     this.userDataService.getUserReports();
-    this.store$.select(MainSelectors.userReports).subscribe(resp => {
+    this.subscription = this.store$.select(MainSelectors.userReports).subscribe(resp => {
       this.userReports = resp;
     });
+  };
+
+  ngOnDestroy(): void { 
+    this.subscription.unsubscribe();
   };
 };

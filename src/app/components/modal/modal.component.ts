@@ -9,7 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
 export class ModalComponent {
   constructor(private dialog: MatDialog) { };
 
-  openDialog(SomeModal: ComponentType<unknown> | TemplateRef<unknown>): void {
-    this.dialog.open(SomeModal);
+  openDialog(SomeModal: ComponentType<unknown> | TemplateRef<unknown>, options: any): void {
+    this.dialog.open(SomeModal, {
+      data: {
+        targetID: options.targetID,
+        report: options.report
+      }
+    });
   };
 };

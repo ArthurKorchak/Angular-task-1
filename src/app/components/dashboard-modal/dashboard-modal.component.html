@@ -1,10 +1,13 @@
-<div *ngIf="assessmentReport">
+<div>
   <h1 mat-dialog-title>User Assessment Report</h1>
   <div mat-dialog-content>
-    <p>Agreeableness: {{assessmentReport.data.Agreeableness}}</p>
-    <p>Drive: {{assessmentReport.data.Drive}}</p>
-    <p>Luck: {{assessmentReport.data.Luck}}</p>
-    <p>Openess: {{assessmentReport.data.Openess}}</p>
+    <div class="placeholder" *ngIf="!assessmentReport"></div>
+    <div>
+      <p class="title">{{report.name}}</p>
+      <p>Users resolved: {{report.users_resolved}}</p>
+      <p>Status: {{report.active ? 'Active' : 'Outdated'}}</p>
+    </div>
+    <app-canvas-chart *ngIf="assessmentReport" [assessmentReport]="assessmentReport"></app-canvas-chart>
   </div>
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Close</button>

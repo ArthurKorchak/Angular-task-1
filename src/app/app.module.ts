@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -21,6 +21,8 @@ import { mainReducer } from './state/main.reducer';
 import { ModalComponent } from './components/modal/modal.component';
 import { DashboardModalComponent } from './components/dashboard-modal/dashboard-modal.component';
 import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
+import { MainInterceptor } from './components/interceptors/main.interceptor';
+import { CanvasChartComponent } from './components/canvas-chart/canvas-chart.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AdminNavigationComponent } from './components/admin-navigation/admin-na
     LoginFormComponent,
     ModalComponent,
     DashboardModalComponent,
-    AdminNavigationComponent
+    AdminNavigationComponent,
+    CanvasChartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,14 @@ import { AdminNavigationComponent } from './components/admin-navigation/admin-na
     StoreModule.forRoot({ main: mainReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [ModalComponent],
+  providers: [
+    ModalComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MainInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
