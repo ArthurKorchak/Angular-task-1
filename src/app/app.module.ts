@@ -21,7 +21,7 @@ import { mainReducer } from './state/main.reducer';
 import { ModalComponent } from './components/modal/modal.component';
 import { DashboardModalComponent } from './components/dashboard-modal/dashboard-modal.component';
 import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
-import { MainInterceptor } from './components/interceptors/main.interceptor';
+import { MainInterceptor } from './interceptors/main.interceptor';
 import { CanvasChartComponent } from './components/canvas-chart/canvas-chart.component';
 
 @NgModule({
