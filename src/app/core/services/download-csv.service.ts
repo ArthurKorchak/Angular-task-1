@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CsvService {
 
-  downloadFile(data: any, filename='data'): void {
+  public downloadFile(data: User[], filename='data'): void {
     let csvData = this.ConvertToCSV(data, ['first_name','last_name', 'email', 'groups']);
     // console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);
     let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+
     if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
         dwldLink.setAttribute("target", "_blank");
-    }
+    };
     dwldLink.setAttribute("href", url);
     dwldLink.setAttribute("download", filename + ".csv");
     dwldLink.style.visibility = "hidden";
@@ -23,14 +25,14 @@ export class CsvService {
     document.body.removeChild(dwldLink);
   };
 
-  ConvertToCSV(objArray: Object, headerList: string[]): string {
+  private ConvertToCSV(objArray: Object[], headerList: string[]): string {
     let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
     let str = '';
     let row = 'S.No,';
 
     for (let index in headerList) {
       row += headerList[index] + ',';
-    }
+    };
     row = row.slice(0, -1);
     str += row + '\r\n';
     for (let i = 0; i < array.length; i++) {

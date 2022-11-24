@@ -1,12 +1,12 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AssessmentReport } from 'src/app/models/assessment-report';
-import { UserDataService } from 'src/app/services/user-data.service';
-import { MainSelectors } from 'src/app/state/main.selectors';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from 'src/app/models/dialog-data';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { UserReport } from 'src/app/models/user-report';
+import { AssessmentReport } from 'src/app/core/models/assessment-report';
+import { UserDataService } from 'src/app/core/services/user-data.service';
+import { MainSelectors } from 'src/app/core/state/main.selectors';
+import { DialogData } from 'src/app/core/models/dialog-data';
+import { UserReport } from 'src/app/core/models/user-report';
 
 @Component({
   selector: 'app-dashboard-modal',
@@ -15,9 +15,9 @@ import { UserReport } from 'src/app/models/user-report';
 })
 export class DashboardModalComponent implements OnInit, OnDestroy {
 
+  private subscription = Subscription.EMPTY;
   public assessmentReport: AssessmentReport | undefined = undefined;
   public report: UserReport = this.data.report;
-  private subscription = Subscription.EMPTY;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -25,14 +25,14 @@ export class DashboardModalComponent implements OnInit, OnDestroy {
     private store$: Store
   ) { };
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.userDataService.getAssessmentReport(this.data.targetID);
     this.subscription = this.store$.select(MainSelectors.assessmentReport).subscribe(resp => {
       if (resp) this.assessmentReport = resp;
     });
   };
   
-  ngOnDestroy(): void { 
+  public ngOnDestroy(): void { 
     this.subscription.unsubscribe();
   };
 };

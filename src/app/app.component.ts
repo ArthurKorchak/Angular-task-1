@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { MainSelectors } from './state/main.selectors';
+import { MainSelectors } from './core/state/main.selectors';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,18 @@ import { MainSelectors } from './state/main.selectors';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  public isAdmin = false;
   private subscription = Subscription.EMPTY;
+  public isAdmin = false;
   
   constructor(private store$: Store) { };
   
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.subscription = this.store$.select(MainSelectors.userInfo).subscribe(resp => {
       this.isAdmin = resp?.role === "Admin";
     });
   };
 
-  ngOnDestroy(): void { 
+  public ngOnDestroy(): void { 
     this.subscription.unsubscribe();
   };
 };

@@ -7,9 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
   template: '',
 })
 export class ModalComponent {
+  
   constructor(private dialog: MatDialog) { };
 
-  openDialog(SomeModal: ComponentType<unknown> | TemplateRef<unknown>, options: any): void {
+  public openDialog(SomeModal: ComponentType<unknown> | TemplateRef<unknown>, options: any): void {
     this.dialog.open(SomeModal, {
       data: {
         targetID: options.targetID,

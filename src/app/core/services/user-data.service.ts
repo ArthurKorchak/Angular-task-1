@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Store } from '@ngrx/store';
-import { MainActions } from 'src/app/state/main.actions';
-import { API_BASE_URL } from 'src/app/constants/api-params';
-import { UserReport } from 'src/app/models/user-report';
-import { AssessmentReport } from 'src/app/models/assessment-report';
+import { MainActions } from 'src/app/core/state/main.actions';
+import { API_BASE_URL } from 'src/app/core/constants/api-params';
+import { UserReport } from 'src/app/core/models/user-report';
+import { AssessmentReport } from 'src/app/core/models/assessment-report';
 import { User } from '../models/user';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class UserDataService {
 
   constructor(private http: HttpClient, private store$: Store) { };
 
-  getUserReports(): void {
+  public getUserReports(): void {
 
     this.http.get<UserReport[]>(`${API_BASE_URL}/api/userassessments`)
       .subscribe(res => {
@@ -22,7 +22,7 @@ export class UserDataService {
       });
   };
 
-  getAssessmentReport(id: string): void {
+  public getAssessmentReport(id: string): void {
     
     this.store$.dispatch(MainActions.setAssessmentReport({ assessmentReport: undefined}));
     this.http.get<AssessmentReport>(`${API_BASE_URL}/api/userassessment/graph?id=${id}`)
@@ -31,7 +31,7 @@ export class UserDataService {
       });
   };
 
-  getUsers(): void {
+  public getUsers(): void {
 
     this.http.get<User[]>(`${API_BASE_URL}/api/users`)
       .subscribe(res => {

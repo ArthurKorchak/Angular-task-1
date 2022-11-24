@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { AssessmentReport } from 'src/app/models/assessment-report';
-import { UserInfo } from 'src/app/models/user-info';
-import { UserReport } from 'src/app/models/user-report';
+import { AssessmentReport } from 'src/app/core/models/assessment-report';
+import { UserInfo } from 'src/app/core/models/user-info';
+import { UserReport } from 'src/app/core/models/user-report';
 import { User } from '../models/user';
 import { MainActions } from './main.actions';
 

@@ -10,12 +10,12 @@
               <p class="checkbox-title"> add to download list</p>
             </div>
             <div class="text-data">
-              <p>First Name: {{user.first_name}}</p>
-              <p>Last Name: {{user.last_name}}</p>
-              <p>Email: {{user.email}}</p>
-              <p>{{ user.groups.length ? "User groups:" : null}}</p>
+              <p>First Name: {{ user.first_name }}</p>
+              <p>Last Name: {{ user.last_name }}</p>
+              <p>Email: {{ user.email }}</p>
+              <p>{{ user.groups.length ? "User groups:" : null }}</p>
               <ul>
-                <li *ngFor="let group of user.groups">{{group}}</li>
+                <li *ngFor="let group of user.groups">{{ group }}</li>
               </ul>
             </div>
           </mat-card-content>

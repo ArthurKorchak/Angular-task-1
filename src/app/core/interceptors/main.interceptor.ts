@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { MainSelectors } from "src/app/state/main.selectors";
+import { MainSelectors } from "src/app/core/state/main.selectors";
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
@@ -15,15 +15,11 @@ export class MainInterceptor implements HttpInterceptor {
     });
   };
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     let clonedReq = req;
 
-    if (this.token) {
-      clonedReq = req.clone({
-        headers: req.headers.set('X-Token', this.token)
-      });
-    };
+    if (this.token) clonedReq = req.clone({ headers: req.headers.set('X-Token', this.token) });
 
     return next.handle(clonedReq);
   };
