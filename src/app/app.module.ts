@@ -15,15 +15,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { AdminBarComponent } from '../shared/components/admin-bar/admin-bar.component';
-import { DashboardComponent } from '../shared/components/dashboard/dashboard.component';
-import { LoginFormComponent } from '../shared/components/login-form/login-form.component';
+import { AdminBarComponent } from './shared/components/admin-bar/admin-bar.component';
+import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
+import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { mainReducer } from './core/state/main.reducer';
-import { ModalComponent } from '../shared/components/modal/modal.component';
-import { DashboardModalComponent } from '../shared/components/dashboard-modal/dashboard-modal.component';
-import { AdminNavigationComponent } from '../shared/components/admin-navigation/admin-navigation.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { DashboardModalComponent } from './shared/components/dashboard-modal/dashboard-modal.component';
+import { AdminNavigationComponent } from './shared/components/admin-navigation/admin-navigation.component';
 import { MainInterceptor } from './core/interceptors/main.interceptor';
-import { CanvasChartComponent } from '../shared/components/canvas-chart/canvas-chart.component';
+import { CanvasChartComponent } from './shared/components/canvas-chart/canvas-chart.component';
 
 @NgModule({
   declarations: [
