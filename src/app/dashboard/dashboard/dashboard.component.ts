@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { UserReport } from 'src/app/_core/models/user-report.model';
-import { UserDataService } from 'src/app/_core/services/user-data.service';
 import { MainSelectors } from 'src/app/_core/state/main.selectors';
 import { DashboardModalComponent } from '../dashboard-modal/dashboard-modal.component';
 import { ModalComponent } from '../../_shared/modal/modal.component';
+import { MainActions } from 'src/app/_core/state/main.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,13 +18,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public userReports: UserReport[] | undefined = undefined;
 
   constructor(
-    private userDataService: UserDataService,
     private modal: ModalComponent,
     private store$: Store
   ) { };
 
   public ngOnInit(): void {
-    this.userDataService.getUserReports();
+    this.store$.dispatch(MainActions.userReports())
     this.subscription = this.store$.select(MainSelectors.userReports).subscribe(resp => {
       this.userReports = resp;
     });

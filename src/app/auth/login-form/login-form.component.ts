@@ -3,8 +3,8 @@ import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/_core/services/login.service';
 import { MainSelectors } from 'src/app/_core/state/main.selectors';
+import { MainActions } from "../../_core/state/main.actions";
 
 @Component({
   selector: 'app-login-form',
@@ -15,13 +15,12 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   
   private subscriptions = new Subscription();
   public form: FormGroup = new FormGroup({
-    mail: new FormControl(''),
-    password: new FormControl(''),
+    mail: new FormControl<string>(''),
+    password: new FormControl<string>(''),
   });
   public error = false;
   
   constructor(
-    private loginService: LoginService,
     private store$: Store,
     private router: Router
   ) { };
@@ -40,6 +39,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   };
 
   public submit(form: FormGroupDirective): void {
-    this.loginService.getUserInfo(form.value.mail, form.value.password);
+    this.store$.dispatch(MainActions.userInfo({ email: form.value.mail, password: form.value.password }));
   };
 };

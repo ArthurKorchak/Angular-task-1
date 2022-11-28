@@ -9,7 +9,6 @@ export class CsvService {
 
   public downloadFile(data: User[], filename='data'): void {
     let csvData = this.ConvertToCSV(data, ['first_name','last_name', 'email', 'groups']);
-    // console.log(csvData)
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);

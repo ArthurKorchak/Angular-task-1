@@ -3,10 +3,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AssessmentReport } from 'src/app/_core/models/assessment-report.model';
-import { UserDataService } from 'src/app/_core/services/user-data.service';
 import { MainSelectors } from 'src/app/_core/state/main.selectors';
 import { DialogData } from 'src/app/_core/models/dialog-data.model';
 import { UserReport } from 'src/app/_core/models/user-report.model';
+import { MainActions } from 'src/app/_core/state/main.actions';
 
 @Component({
   selector: 'app-dashboard-modal',
@@ -21,12 +21,11 @@ export class DashboardModalComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private userDataService: UserDataService,
     private store$: Store
   ) { };
 
   public ngOnInit(): void {
-    this.userDataService.getAssessmentReport(this.data.targetID);
+    this.store$.dispatch(MainActions.assessmentReport({id: this.data.targetID}))
     this.subscription = this.store$.select(MainSelectors.assessmentReport).subscribe(resp => {
       if (resp) this.assessmentReport = resp;
     });

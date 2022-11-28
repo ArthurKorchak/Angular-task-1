@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/_core/models/user.model';
 import { CsvService } from 'src/app/_core/services/download-csv.service';
-import { UserDataService } from 'src/app/_core/services/user-data.service';
+import { MainActions } from 'src/app/_core/state/main.actions';
 import { MainSelectors } from 'src/app/_core/state/main.selectors';
 
 @Component({
@@ -19,13 +19,12 @@ export class AdminBarComponent implements OnInit, OnDestroy {
   public isDownloadPossible = false;
 
   constructor(
-    private userDataService: UserDataService,
     private csvService: CsvService,
     private store$: Store
   ) { };
 
   public ngOnInit(): void {
-    this.userDataService.getUsers();
+    this.store$.dispatch(MainActions.users())
     this.subscription = this.store$.select(MainSelectors.users).subscribe(resp => {
       this.users = resp;
     });
