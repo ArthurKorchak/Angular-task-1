@@ -3,8 +3,8 @@ import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/core/services/login.service';
-import { MainSelectors } from 'src/app/core/state/main.selectors';
+import { LoginService } from 'src/app/_core/services/login.service';
+import { MainSelectors } from 'src/app/_core/state/main.selectors';
 
 @Component({
   selector: 'app-login-form',

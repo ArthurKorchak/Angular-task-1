@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainSelectors } from '../state/main.selectors';
-import { UserInfo } from '../models/user-info';
+import { UserInfo } from '../models/user-info.model';
 
 @Injectable({
   providedIn: 'root'

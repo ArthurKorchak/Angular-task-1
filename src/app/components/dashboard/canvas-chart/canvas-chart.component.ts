@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { AssessmentReport } from 'src/app/core/models/assessment-report';
+import { AssessmentReport } from 'src/app/_core/models/assessment-report.model';
 
 @Component({
   selector: 'app-canvas-chart',

@@ -1,4 +1,4 @@
-import { UserReport } from "./user-report";
+import { UserReport } from "./user-report.model";
 
 export interface DialogData {
   targetID: string,

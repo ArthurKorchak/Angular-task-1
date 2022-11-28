@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/core/models/user';
-import { CsvService } from 'src/app/core/services/download-csv.service';
-import { UserDataService } from 'src/app/core/services/user-data.service';
-import { MainSelectors } from 'src/app/core/state/main.selectors';
+import { User } from 'src/app/_core/models/user.model';
+import { CsvService } from 'src/app/_core/services/download-csv.service';
+import { UserDataService } from 'src/app/_core/services/user-data.service';
+import { MainSelectors } from 'src/app/_core/state/main.selectors';
 
 @Component({
   selector: 'app-admin-bar',

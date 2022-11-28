@@ -2,11 +2,11 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AssessmentReport } from 'src/app/core/models/assessment-report';
-import { UserDataService } from 'src/app/core/services/user-data.service';
-import { MainSelectors } from 'src/app/core/state/main.selectors';
-import { DialogData } from 'src/app/core/models/dialog-data';
-import { UserReport } from 'src/app/core/models/user-report';
+import { AssessmentReport } from 'src/app/_core/models/assessment-report.model';
+import { UserDataService } from 'src/app/_core/services/user-data.service';
+import { MainSelectors } from 'src/app/_core/state/main.selectors';
+import { DialogData } from 'src/app/_core/models/dialog-data.model';
+import { UserReport } from 'src/app/_core/models/user-report.model';
 
 @Component({
   selector: 'app-dashboard-modal',
