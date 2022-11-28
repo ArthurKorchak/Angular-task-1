@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from "rxjs";
+
 import { MainApiService } from "../api/main.api.service";
 import { MainActions } from "./main.actions";
 import { UserInfo } from "../models/user-info.model";

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import { MainActions } from 'src/app/_core/state/main.actions';
 
 @Injectable({

@@ -5,7 +5,7 @@ import { UserReport } from 'src/app/_core/models/user-report.model';
 import { UserDataService } from 'src/app/_core/services/user-data.service';
 import { MainSelectors } from 'src/app/_core/state/main.selectors';
 import { DashboardModalComponent } from '../dashboard-modal/dashboard-modal.component';
-import { ModalComponent } from '../../../_shared/modal/modal.component';
+import { ModalComponent } from '../../_shared/modal/modal.component';
 
 @Component({
   selector: 'app-dashboard',
